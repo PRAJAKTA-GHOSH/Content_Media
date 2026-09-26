@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ⚠️ EDIT THIS ONE LINE before deploying: put your Render URL here. */
-const API_BASE = "https://YOUR-BACKEND.onrender.com/api";
+const API_BASE = "https://content-media-labp.onrender.com/api";
 
 const CAMPAIGN_ID = "CMP-024";
 const LIFECYCLE = ["Brief","Generate","Adapt","Validate","Approve","Schedule","Publish","Analyze","Learn"];
