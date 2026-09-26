@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Loop — AI Content Operating System</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔁</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/animations3d.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ LEFT RAIL ============ -->
+  <aside class="rail">
+    <div class="rail-brand">
+      <span class="rail-brand-mark">◎</span>
+      <div class="rail-brand-text">
+        <strong>Loop</strong>
+        <span>Content Operating System</span>
+      </div>
+    </div>
+
+    <nav class="rail-nav">
+      <button class="rail-item is-active" data-view="overview">
+        <span class="rail-item-icon">◈</span> Overview
+      </button>
+      <button class="rail-item" data-view="studio">
+        <span class="rail-item-icon">✎</span> Generative Studio
+      </button>
+      <button class="rail-item" data-view="approval">
+        <span class="rail-item-icon">◐</span> Approval Gate
+      </button>
+      <button class="rail-item" data-view="publisher">
+        <span class="rail-item-icon">▤</span> Publisher
+      </button>
+      <button class="rail-item" data-view="analytics">
+        <span class="rail-item-icon">◫</span> Cross-Platform Insights
+      </button>
+      <button class="rail-item" data-view="report">
+        <span class="rail-item-icon">▧</span> Weekly Report
+      </button>
+    </nav>
+
+    <div class="rail-campaign">
+      <span class="rail-campaign-label">Active campaign</span>
+      <strong id="railCampaignId">CMP-024</strong>
+      <span id="railCampaignName">Bengali thriller launch</span>
+    </div>
+
+    <div class="rail-sound-box">
+      <button class="sound-toggle-btn" id="soundToggle" type="button" aria-pressed="false" title="Toggle audio feedback (muted by default)">
+        <span><span class="sound-toggle-icon">🔇</span> <span class="sound-toggle-label">Audio: Muted</span></span>
+        <span class="sound-status-indicator"></span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <!-- ============ OVERVIEW ============ -->
+    <section class="view is-active" id="view-overview">
+      <header class="view-header view-header--hero">
+        <div>
+          <p class="eyebrow-plain">Content Ops / Generative AI</p>
+          <h1 class="hero-title">One brief becomes<br>three campaigns.<br><em>Every one learns.</em></h1>
+          <p class="hero-sub">Loop turns a single content brief into on-brand, natively bilingual assets for three channels — validates them against real platform limits, holds them for human approval, measures what shipped, and feeds the result back into the next brief.</p>
+          <button class="btn btn--primary" id="ctaGoStudio">Start a brief →</button>
+        </div>
+
+        <div class="loop-stage" id="loopStage" aria-hidden="true">
+          <!-- animated lifecycle ring, built in JS -->
+        </div>
+      </header>
+
+      <div class="pillars">
+        <article class="pillar">
+          <span class="pillar-index">Create</span>
+          <h3>Genuinely different, per channel</h3>
+          <p>Instagram, Facebook and LinkedIn each get their own visual composition, tone, length and CTA. Bengali and English are both generated natively — never one translated from the other.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar-index">Control</span>
+          <h3>Nothing publishes on its own</h3>
+          <p>Every asset is checked against the destination platform's real constraints, then held until a human explicitly approves it. Reject and regenerate is a first-class path, not an afterthought.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar-index">Learn</span>
+          <h3>Insight becomes the next brief</h3>
+          <p>Published results are compared campaign-to-campaign, like for like. What worked is written back as a recommendation the next brief starts from — not left to sit on a dashboard.</p>
+        </article>
+      </div>
+
+      <div class="impact-strip">
+        <div class="impact-stat">
+          <strong id="impactPosts">3</strong>
+          <span>channel-tailored posts from 1 brief</span>
+        </div>
+        <div class="impact-stat">
+          <strong id="impactMinutes">340</strong>
+          <span>minutes of manual adaptation avoided</span>
+        </div>
+        <div class="impact-stat">
+          <strong id="impactTurnaround">6</strong>
+          <span>minute average approval turnaround</span>
+        </div>
+        <div class="impact-stat">
+          <strong id="impactCatch">100%</strong>
+          <span>of constraint violations caught pre-publish</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GENERATIVE STUDIO ============ -->
+    <section class="view" id="view-studio">
+      <header class="view-header">
+        <div>
+          <p class="eyebrow-plain">Generative Studio</p>
+          <h2>Brief in. Three concepts out.</h2>
+        </div>
+      </header>
+
+      <div class="studio-layout">
+        <div class="brief-panel">
+          <label class="field-label" for="briefInput">Campaign brief</label>
+          <textarea id="briefInput" rows="5">Announce the new Bengali psychological thriller series. Lead with intrigue, not plot summary. Drive first-episode views.</textarea>
+
+          <div class="lang-toggle" role="group" aria-label="Native generation language">
+            <button class="lang-btn is-active" data-lang="both">Bengali + English, both native</button>
+          </div>
+          <p class="field-hint">Both languages are generated independently from the brief — English is not translated from Bengali, or the reverse.</p>
+
+          <button class="btn btn--primary btn--full" id="generateBtn">
+            <span id="generateBtnLabel">Generate three concepts</span>
+          </button>
+
+          <div class="copilot-card" id="copilotCard">
+            <div class="copilot-head">
+              <span class="copilot-badge">Campaign Memory</span>
+            </div>
+            <p>Your previous Bengali campaign performed best with question-led openings under 12 words.</p>
+            <button class="btn btn--ghost" id="applyInsightBtn">Apply insight to this brief</button>
+          </div>
+        </div>
+
+        <div class="concept-stage" id="conceptStage">
+          <!-- generated platform cards render here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPROVAL GATE ============ -->
+    <section class="view" id="view-approval">
+      <header class="view-header">
+        <div>
+          <p class="eyebrow-plain">Approval Gate</p>
+          <h2>Nothing is scheduled without a human decision.</h2>
+        </div>
+        <div class="state-legend">
+          <span><i class="dot dot--wait"></i> Pending review</span>
+          <span><i class="dot dot--ok"></i> Approved</span>
+          <span><i class="dot dot--no"></i> Discarded</span>
+        </div>
+      </header>
+
+      <div class="approval-board" id="approvalBoard">
+        <!-- queue cards render here -->
+      </div>
+    </section>
+
+    <!-- ============ PUBLISHER ============ -->
+    <section class="view" id="view-publisher">
+      <header class="view-header">
+        <div>
+          <p class="eyebrow-plain">Publisher</p>
+          <h2>Scheduled, then published through a mock channel adapter.</h2>
+        </div>
+      </header>
+
+      <div class="pipeline-track" id="pipelineTrack">
+        <!-- lifecycle track renders here -->
+      </div>
+
+      <div class="publish-list" id="publishList">
+        <!-- publish rows render here -->
+      </div>
+    </section>
+
+    <!-- ============ ANALYTICS ============ -->
+    <section class="view" id="view-analytics">
+      <header class="view-header">
+        <div>
+          <p class="eyebrow-plain">Cross-Platform Insights</p>
+          <h2>The same campaign, compared like for like.</h2>
+        </div>
+      </header>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table" id="compareTable"></table>
+      </div>
+
+      <div class="insight-cards" id="insightCards"></div>
+    </section>
+
+    <!-- ============ WEEKLY REPORT ============ -->
+    <section class="view" id="view-report">
+      <header class="view-header">
+        <div>
+          <p class="eyebrow-plain">Weekly AI Report</p>
+          <h2 id="reportWeek">Sep 15 – Sep 21, 2026</h2>
+        </div>
+      </header>
+
+      <div class="report-body">
+        <p class="report-summary" id="reportSummary"></p>
+        <ul class="report-claims" id="reportClaims"></ul>
+      </div>
+
+      <div class="next-brief-card">
+        <span class="copilot-badge">Feeds the next brief</span>
+        <p>These findings are already attached to <strong>CMP-025</strong>. Open Generative Studio to see the recommendation applied.</p>
+      </div>
+    </section>
+
+    <!-- ============ DEMO FOOTER / ATTRIBUTION ============ -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <img src="assets/prajakta.jpg" alt="Prajakta Ghosh" class="footer-avatar" width="36" height="36" />
+        <span class="footer-text">Built by <strong>Prajakta Ghosh</strong> for the Hoichoi Content Ops challenge — designed, engineered, and shipped end to end.</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<!-- ============ POST EVIDENCE MODAL ============ -->
+<div class="modal-overlay" id="postModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/animations3d.js"></script>
+</body>
+</html>
